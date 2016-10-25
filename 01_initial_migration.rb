@@ -41,9 +41,15 @@ class InitialMigration < ActiveRecord::Migration[5.0]
 
     create_table :time_entries do |t|
       t.integer :developer_id
-      t.integer :project_id
+      t.integer :task_id
       t.datetime :date
       t.integer :length_in_second
+    end
+
+    create_table :tasks do |t|
+      t.string :name
+      t.integer :parent_project_id
+      t.integer :parent_task_id
     end
 
     create_table :project_comments do |t|
@@ -78,6 +84,7 @@ class InitialMigration < ActiveRecord::Migration[5.0]
     drop_table :groups
     drop_table :projects
     drop_table :developers
+    derop_table :tasks
   end
 
 
